@@ -19,6 +19,10 @@ class Product(models.Model):
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=19, decimal_places=2)
 
+    @property
+    def owner(self):
+        return self.shop.owner
+
 
 class Order(models.Model):
     # Don't delete the order if the user deletes their account for accounting purposes
@@ -26,6 +30,10 @@ class Order(models.Model):
 
     # One to one relation with a shop
     shop = models.ForeignKey('Shop', on_delete=models.CASCADE, related_name='orders')
+
+    @property
+    def owner(self):
+        return self.client
 
 
 class LineItem(models.Model):
@@ -37,4 +45,6 @@ class LineItem(models.Model):
     quantity = models.IntegerField(default=1)
     price = models.DecimalField(max_digits=19, decimal_places=2)
 
-
+    @property
+    def owner(self):
+        return self.order.owner
