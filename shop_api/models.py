@@ -9,6 +9,9 @@ class Shop(models.Model):
     name = models.CharField(max_length=100)
     owner = models.OneToOneField(User, on_delete=models.CASCADE, related_name='shop')
 
+    def __str__(self):
+        return self.name
+
 
 class Product(models.Model):
     """
@@ -18,6 +21,9 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=19, decimal_places=2)
+
+    def __str__(self):
+        return self.name
 
     @property
     def owner(self):
@@ -30,6 +36,9 @@ class Order(models.Model):
 
     # One to one relation with a shop
     shop = models.ForeignKey('Shop', on_delete=models.CASCADE, related_name='orders')
+
+    def __str__(self):
+        return 'Order: ' + str(self.id)
 
     @property
     def owner(self):
@@ -44,6 +53,9 @@ class LineItem(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE, related_name='line_items')
     quantity = models.IntegerField(default=1)
     price = models.DecimalField(max_digits=19, decimal_places=2)
+
+    def __str__(self):
+        return self.product.name + ' x' + str(self.quantity)
 
     @property
     def owner(self):
