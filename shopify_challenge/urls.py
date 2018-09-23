@@ -16,8 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.documentation import include_docs_urls
 
 urlpatterns = [
     url(r'^', include(('shop_api.urls', 'shop_api'), namespace='shop_api')),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
+    url('^docs/', include_docs_urls(title='Shopify Developer Challenge', public=False))
 ]
