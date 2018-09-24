@@ -1,0 +1,18 @@
+[
+  {
+    "model": "shop_api.shop",
+    "pk": 1,
+    "fields": {
+      "name": "Max's Poker Shop",
+      "owner": 2
+    }
+  },
+  {
+    "model": "shop_api.shop",
+    "pk": 2,
+    "fields": {
+      "name": "Discount Printing Supplies",
+      "owner": 5
+    }
+  }
+]

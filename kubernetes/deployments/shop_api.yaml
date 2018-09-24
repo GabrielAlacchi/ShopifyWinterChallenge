@@ -17,6 +17,7 @@ spec:
       containers:
       - name: worker
         image: gabrielalacchi/shopify-winter-challenge-worker
+        command: ["gunicorn shopify_challenge.wsgi"]
         env:
           - name: API_ENVIRONMENT
             value: production

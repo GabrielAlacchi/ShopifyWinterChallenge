@@ -28,6 +28,7 @@ spec:
       - image: mysql:5.6
         name: mysql
         env:
+        # TODO: Use a secret for this
         - name: MYSQL_ROOT_PASSWORD
           value: password
         ports:

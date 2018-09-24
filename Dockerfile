@@ -7,4 +7,7 @@ RUN pip install -r requirements.txt
 
 ADD . /app/
 
-CMD gunicorn shopify_challenge.wsgi
+RUN python manage.py migrate
+RUN python manage.py loaddata shop_api/fixtures/*.json
+
+CMD python manage.py runserver 0.0.0.0:80

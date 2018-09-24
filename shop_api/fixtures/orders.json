@@ -1,0 +1,20 @@
+[
+  {
+    "model": "shop_api.order",
+    "pk": 2,
+    "fields": {
+      "client": 2,
+      "shop": 2,
+      "total": "0.05"
+    }
+  },
+  {
+    "model": "shop_api.order",
+    "pk": 3,
+    "fields": {
+      "client": 4,
+      "shop": 1,
+      "total": "173.07"
+    }
+  }
+]

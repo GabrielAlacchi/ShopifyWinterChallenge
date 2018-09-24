@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions
+from shop_api import serializers
 from shop_api.models import Shop, Order, Product, LineItem
-from shop_api.serializers import ShopSerializer, ProductSerializer, OrderSerializer, LineItemSerializer
 from shop_api.permissions import IsResourceOwnerOrReadOnly, IsShopOwnerOrReadOnly, IsOrderOwnerOrShopOwnerReadOnly
 
 
@@ -15,7 +15,7 @@ class ShopAPIView(generics.ListCreateAPIView):
     Creates a new shop with the authenticated user as the owner.
     """
 
-    serializer_class = ShopSerializer
+    serializer_class = serializers.ShopSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
@@ -50,7 +50,7 @@ class ShopRUDView(generics.RetrieveUpdateDestroyAPIView):
     """
 
     lookup_field = 'pk'
-    serializer_class = ShopSerializer
+    serializer_class = serializers.ShopSerializer
     permission_classes = [IsResourceOwnerOrReadOnly]
 
     def get_queryset(self):
@@ -69,7 +69,7 @@ class ProductAPIView(generics.ListCreateAPIView):
     The authenticated user must be the shop owner to perform this action.
     """
 
-    serializer_class = ProductSerializer
+    serializer_class = serializers.ProductSerializer
     permission_classes = [IsShopOwnerOrReadOnly]
 
     def get_queryset(self):
@@ -106,7 +106,7 @@ class ProductRUDView(generics.RetrieveUpdateDestroyAPIView):
     """
 
     lookup_field = 'pk'
-    serializer_class = ProductSerializer
+    serializer_class = serializers.ProductSerializer
 
     def get_queryset(self):
         shop_id = self.kwargs.get('shop_id')
@@ -129,7 +129,7 @@ class OrderAPIView(generics.ListCreateAPIView):
     The authenticated user will be the owner of the order that's created
     """
 
-    serializer_class = OrderSerializer
+    serializer_class = serializers.OrderSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
     def get_queryset(self):
@@ -146,22 +146,12 @@ class OrderAPIView(generics.ListCreateAPIView):
         serializer.save(shop=shop_object, client=self.request.user)
 
 
-class OrderRUDView(generics.RetrieveUpdateDestroyAPIView):
+class OrderRUDView(generics.RetrieveDestroyAPIView):
     """
     API view for retrieving, updating and destroying orders belonging to a shop.
 
     get:
     Returns the detail for the order with the provided id.
-
-    put:
-    Fully updates the order with the provided id.
-    All data fields in the request body are required, see the model below for details.
-    The authenticated user must be the order owner to perform this operation.
-
-    patch:
-    Partially updates the order with the provided id.
-    All data fields in the request body are optional, see the model below for details.
-    The authenticated user must be the order owner to perform this operation.
 
     delete:
     Deletes the order with the provided id.
@@ -169,7 +159,7 @@ class OrderRUDView(generics.RetrieveUpdateDestroyAPIView):
     """
 
     lookup_field = 'pk'
-    serializer_class = OrderSerializer
+    serializer_class = serializers.OrderSerializer
     permission_classes = [IsResourceOwnerOrReadOnly]
 
     def get_queryset(self):
@@ -194,7 +184,7 @@ class LineItemAPIView(generics.ListCreateAPIView):
     The authenticated user must be order owner to perform this action.
     """
 
-    serializer_class = LineItemSerializer
+    serializer_class = serializers.LineItemSerializer
     permission_classes = [IsOrderOwnerOrShopOwnerReadOnly]
 
     def get_queryset(self):
@@ -239,7 +229,7 @@ class LineItemRUDView(generics.RetrieveUpdateDestroyAPIView):
     The authenticated user must be the order owner to perform this operation.
     """
 
-    serializer_class = LineItemSerializer
+    serializer_class = serializers.LineItemUpdateSerializer
     permission_classes = [IsOrderOwnerOrShopOwnerReadOnly]
 
     def get_queryset(self):

@@ -17,12 +17,15 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework_swagger.views import get_swagger_view
+from django.views.generic.base import RedirectView
+
 
 schema_view = get_swagger_view(title='Shopify Developer Challenge')
 
 urlpatterns = [
+    url(r'^$', RedirectView.as_view(url='docs/')),
     url(r'^', include(('shop_api.urls', 'shop_api'), namespace='shop_api')),
     url(r'^docs/$', schema_view),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^accounts/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
 ]

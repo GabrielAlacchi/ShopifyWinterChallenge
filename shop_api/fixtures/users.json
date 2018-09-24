@@ -1,0 +1,92 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$IBaAm2n8QOjb$EORhebM8oIsAInfkPHeX9fOgvbpLUNz9mc4FmxXszHs=",
+      "last_login": "2018-09-24T05:51:40Z",
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2018-09-24T05:51:17Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$VUItXGmPYDON$8BOoIhtwoFXRTgUawPj9wILSXv3Zw6sGtiBHPIDVkYE=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "max",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-24T05:52:45Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$lwmQR2OCPjG4$VINGCMJpe4mByCoJ+QWd9TqVQ4uKa+FZ3FMDui5Kc+I=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "rajesh",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-24T05:53:37Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$FXocjBz7hzhR$iHXKWMA/rNTwKFzw6zHFHsIJeKEbt2UDt6JVogRp0iw=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "susan",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-24T05:54:03Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$120000$0jlFCaXZqL75$ZZaG/MaV3aJJgsclt900ALu8cDq8UnT+ELx2nV4G9Xs=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "kiara",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2018-09-24T05:54:45Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]

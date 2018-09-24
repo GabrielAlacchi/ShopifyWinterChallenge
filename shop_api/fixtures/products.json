@@ -1,0 +1,42 @@
+[
+  {
+    "model": "shop_api.product",
+    "pk": 1,
+    "fields": {
+      "shop": 1,
+      "name": "2 Copag Poker Sized Deck",
+      "description": "2 large Copag plasticized poker decks.",
+      "price": "16.50"
+    }
+  },
+  {
+    "model": "shop_api.product",
+    "pk": 2,
+    "fields": {
+      "shop": 1,
+      "name": "10 Seat Premium Folding Poker Table",
+      "description": "A folding poker table that isn't horrible! What more can you ask for?",
+      "price": "123.57"
+    }
+  },
+  {
+    "model": "shop_api.product",
+    "pk": 3,
+    "fields": {
+      "shop": 1,
+      "name": "300 Dice Poker Chip Set",
+      "description": "Comes with\r\n300 dice poker chips\r\n2 Copag mini decks\r\n5 die",
+      "price": "45.99"
+    }
+  },
+  {
+    "model": "shop_api.product",
+    "pk": 4,
+    "fields": {
+      "shop": 2,
+      "name": "Nothing",
+      "description": "Printing supplies aren't cheap, and thus we only sell nothing.",
+      "price": "0.01"
+    }
+  }
+]
