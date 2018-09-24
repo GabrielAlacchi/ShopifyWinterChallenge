@@ -19,13 +19,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'e6ousoxitz8)m!3_61wlj7ztkwdp!wr!9k)a%g74k6q-!-0z@y'
+environment = os.environ.get('API_ENVIRONMENT')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if environment == "production":
+    SECRET_KEY = 'e6ousoxitz8)m!3_61wlj7ztkwdp!wr!9k)a%g74k6q-!-0z@y'
+    DEBUG = False
+else:
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = 'e6ousoxitz8)m!3_61wlj7ztkwdp!wr!9k)a%g74k6q-!-0z@y'
 
-ALLOWED_HOSTS = []
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = True
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'shop_api',
 ]
 
@@ -120,11 +127,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'static/'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
 }

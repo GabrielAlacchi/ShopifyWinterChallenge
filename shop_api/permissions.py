@@ -26,11 +26,26 @@ class IsShopOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         shop_id = view.kwargs.get('shop_id')
+
+        if shop_id is None:
+            return True
+
         return Shop.objects.get(pk=shop_id).owner == request.user
 
 
-class IsOrderOwner(permissions.BasePermission):
+class IsOrderOwnerOrShopOwnerReadOnly(permissions.BasePermission):
 
     def has_permission(self, request, view):
         order_id = view.kwargs.get('order_id')
-        return Order.objects.get(pk=order_id).owner == request.user
+        shop_id = view.kwargs.get('shop_id')
+
+        if shop_id is None or order_id is None:
+            return True
+
+        is_order_owner = Order.objects.get(pk=order_id).owner == request.user
+        is_shop_owner = Shop.objects.get(pk=shop_id).owner == request.user
+
+        if request.method in permissions.SAFE_METHODS:
+            return is_order_owner or is_shop_owner
+        else:
+            return is_order_owner
