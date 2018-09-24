@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shop-api-deployment
+  labels:
+    app: shop-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: shop-api
+  template:
+    metadata:
+      labels:
+        app: shop-api
+    spec:
+      containers:
+      - name: worker
+        image: gabrielalacchi/shopify-winter-challenge-worker
+        env:
+          - name: API_ENVIRONMENT
+            value: production
+          - name: API_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: api-secret
+                key: secret_key
+      - name: nginx
+        image: gabrielalacchi/shopify-winter-challenge-nginx
+        ports:
+        - containerPort: 80
+      dnsPolicy: Default

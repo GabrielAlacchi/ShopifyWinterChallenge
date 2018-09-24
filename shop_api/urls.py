@@ -1,10 +1,12 @@
 from django.conf.urls import url
 from shop_api import views
+from django.views.generic.base import RedirectView
 
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
+    url(r'$', RedirectView.as_view(url='shops/')),
     url(r'shops/$', views.ShopAPIView.as_view(), name='shops-listcreate'),
     url(r'shops/(?P<pk>\d+)/$', views.ShopRUDView.as_view(), name='shops-rud'),
     url(r'shops/(?P<shop_id>\d+)/products/$', views.ProductAPIView.as_view(), name='products-listcreate'),

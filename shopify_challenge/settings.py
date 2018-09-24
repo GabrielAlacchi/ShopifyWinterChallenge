@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 environment = os.environ.get('API_ENVIRONMENT')
 
 if environment == "production":
-    SECRET_KEY = 'e6ousoxitz8)m!3_61wlj7ztkwdp!wr!9k)a%g74k6q-!-0z@y'
+    SECRET_KEY = os.environ.get('API_SECRET')
     DEBUG = False
 else:
     # SECURITY WARNING: keep the secret key used in production secret!
